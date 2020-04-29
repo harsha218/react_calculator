@@ -1,0 +1,36 @@
+fromInput = (event) => {
+    let prev = event.target.value
+    console.log(prev)
+    let first = Number(prev.substr(prev.length-1))
+    let third = Number(prev.charAt(prev.length-3))
+    if(isNaN(third) && isNaN(first)){
+      console.log('succces')
+      let dummy = prev.substr(0,prev.length-3)+prev.substr(prev.length-1,prev.length)+' '
+      this.setState({x:dummy})
+    }else{
+      if(isNaN(first)){
+        let dummy = prev.substr(0,prev.length-1)+' '+prev.substr(prev.length-1,prev.length)+' '
+        this.setState({x:dummy})
+      }else{
+        this.setState({x:prev})
+      }
+    }
+  }
+
+
+   changeHandler = (value) => {
+    let prev = this.state.x
+    if(typeof(value) == typeof('d')){
+      if(prev){
+        let lastChar = prev.substr(prev.length-1)
+        if(!isNaN(Number(lastChar))){
+          this.setState({x:prev+value})
+        }else{
+          prev = prev.substr(0,prev.length-1)
+          this.setState({x:prev+value})
+        }
+      }
+    }else{
+      this.setState({x:this.state.x+String(value)})
+    }
+  }
